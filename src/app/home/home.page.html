@@ -1,3 +1,6 @@
+
+
+
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
@@ -7,6 +10,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <app-formulario (person)="addPerson($event)"></app-formulario>
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Blank</ion-title>

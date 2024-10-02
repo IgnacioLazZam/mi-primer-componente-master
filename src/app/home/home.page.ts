@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgModel } from '@angular/forms';
 
 export interface Person{
   name:string,
@@ -11,6 +12,10 @@ export interface Person{
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  
+  addPerson(person: Person){
+    this.people.push(person)
+  }
 
   people:Person[] = [];
   constructor() {
@@ -37,5 +42,7 @@ export class HomePage {
       age:47
     });
   }
+
+
 
 }

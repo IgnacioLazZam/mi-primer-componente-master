@@ -1,0 +1,12 @@
+<form>
+    <ion-label >Name: </ion-label>
+    <ion-input name="name" [(ngModel)]="name"></ion-input>
+
+    <ion-label>Surname: </ion-label>
+    <ion-input name="surname" [(ngModel)]="surname"> </ion-input>
+
+    <ion-label>Age: </ion-label>
+    <ion-input name="age" [(ngModel)]="age"></ion-input>
+
+    <ion-button (click)="addPerson()">Add person</ion-button>
+</form>
