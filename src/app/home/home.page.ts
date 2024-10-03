@@ -10,7 +10,6 @@ export interface Person{
 }
 
 export interface PersonCard extends Person{
-  
   isFav:boolean;
 }
 
@@ -23,7 +22,7 @@ export interface PersonCard extends Person{
 
 export class HomePage {
   
- people:PersonCard[] = [];
+  people:PersonCard[] = [];
 
   constructor(public peopleService:PeopleService) {
     
@@ -31,16 +30,18 @@ export class HomePage {
   
   addPerson(person: PersonCard){
     this.peopleService.add(person)
+    console.log("id:"+person.id)
   }
 
-  onFavIsClicked(isFav:boolean, id:number){
-    this.people[id].isFav = !isFav;
+  onFavIsClicked(id:number){
+    this.peopleService.changeFav(id)
   }
 
   onDeleteIsClicked(id:number){
     let confirmation = confirm("Are you sure you want to delete the card?");
     if (confirmation){
-      this.people.splice(id,1)
+      let person:PersonCard | null= this.peopleService.get(id.toString())
+      this.peopleService.remove(person!!)
     }
     
   }
