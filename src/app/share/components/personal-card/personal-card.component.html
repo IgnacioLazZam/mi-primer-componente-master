@@ -3,13 +3,22 @@
     <ion-card-title>
       <ion-grid>
         <ion-row class="ion-align-items-center">
-          <ion-col size="3" >
+          <ion-col size="4" >
             <ion-avatar>
               <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
             </ion-avatar>      
           </ion-col>
           <ion-col >
             <ion-text color="dark">{{name}} {{surname | slice:0:1 | uppercase}}.</ion-text>
+          </ion-col>
+          <ion-col>
+            <ion-button (click)="isFavClicked()" fill="clear">
+              <ion-icon *ngIf="isFav" color="danger" name="heart"></ion-icon>
+              <ion-icon *ngIf="!isFav" color="medium" name="heart-outline"></ion-icon>
+            </ion-button>
+            <ion-button (click)="isDeleteClicked()" fill="clear">
+              <ion-icon color="medium" name="trash"></ion-icon>
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-grid>

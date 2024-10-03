@@ -18,11 +18,14 @@
   </ion-header>
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let person of people">
+      <ion-col *ngFor="let person of peopleService.getObservable() | async ; let i = index">
         <app-personal-card 
         [name]="person.name" 
         [surname]="person.surname" 
-        [age]="person.age">
+        [age]="person.age"
+        [isFav]="person.isFav"
+        (isFavClick)="onFavIsClicked($event,i)"
+        (isDeleteClick)="onDeleteIsClicked(i)">
         </app-personal-card>      
       </ion-col>
     </ion-row>

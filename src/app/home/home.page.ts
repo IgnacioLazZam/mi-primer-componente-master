@@ -1,48 +1,49 @@
 import { Component } from '@angular/core';
 import { NgModel } from '@angular/forms';
+import { PeopleService } from '../share/services/people.service';
 
 export interface Person{
+  id:string;
   name:string,
   surname:string,
   age:number
 }
+
+export interface PersonCard extends Person{
+  
+  isFav:boolean;
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
+
+
 export class HomePage {
   
-  addPerson(person: Person){
-    this.people.push(person)
+ people:PersonCard[] = [];
+
+  constructor(public peopleService:PeopleService) {
+    
+  }
+  
+  addPerson(person: PersonCard){
+    this.peopleService.add(person)
   }
 
-  people:Person[] = [];
-  constructor() {
-    this.people.push({
-      name:"Juan A.",
-      surname:"García Gómez",
-      age:47
-    });
-    this.people.push({
-      name:"Alejandro.",
-      surname:"García Gómez",
-      age:46
-    });
-
-    this.people.push({
-      name:"Juan",
-      surname:"García Valencia",
-      age:5
-    });
-
-    this.people.push({
-      name:"María del Mar",
-      surname:"Valencia Valencia",
-      age:47
-    });
+  onFavIsClicked(isFav:boolean, id:number){
+    this.people[id].isFav = !isFav;
   }
 
+  onDeleteIsClicked(id:number){
+    let confirmation = confirm("Are you sure you want to delete the card?");
+    if (confirmation){
+      this.people.splice(id,1)
+    }
+    
+  }
 
 
 }
